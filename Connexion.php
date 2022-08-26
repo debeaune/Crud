@@ -1,6 +1,6 @@
 <?php
 
-abstract class getDataBaseConnexion
+abstract class Connexion
 {
 
     public function getDataBaseConnexion()
