@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 
-<?php   
-    // On inclut la connexion à la base de données
-    require_once('database.php');
-?>
-
-<html>
+<html lang="FR">
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE-Edge">
@@ -25,7 +20,7 @@
             <main>
             <h2>Ajouter un(e) Argonaute</h2>
             <br>
-            <form action="action.php" method="post" class="new-member-form">
+            <form action="Members.php" method="post" class="new-member-form">
                 <label for="name">Nom de l'Argonaute</label>
                 <br>
                 <input name="name" type="text" class="form-control" placeholder="Charalampos" />
@@ -36,16 +31,15 @@
             <h2>Membres de l'équipage</h2>
                 <section class="member-list">
                     <div class="member-item">
-                        <?php 
-                            if (isset($_POST['bouton_valider']))
-                            { 
-                                include("database.php");
-                                $sql="SELECT * FROM members WHERE 'name' ='".$_POST['name']."'";
-                                $resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
-                                while ($data = mysql_fetch_array($resultat)) {
-                                echo $data['name'];
-                            }
-                            }
+                        <?php
+                        require_once('Members.php');
+                        $members = New Members();
+                        $datas = $members->members();
+                        
+                        foreach ($datas as $data) {
+                            echo $data['name'];
+                        }
+
                         ?>
                     </div>
                     </section>
