@@ -34,7 +34,7 @@
                         <?php
                         require_once('Members.php');
                         $members = New Members();
-                        $datas = $members->members();
+                        $datas = $members->getMembers();
                         
                         foreach ($datas as $data) {
                             echo $data['name'];
