@@ -4,7 +4,6 @@ require_once('Connexion.php');
 
 class Members extends Connexion
 {
-
     public function members(): array
     {
         $statement = $this->getDataBaseConnexion()->query('SELECT * FROM members');
@@ -16,19 +15,10 @@ class Members extends Connexion
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') 
         {
-            var_dump($_POST);
-        
-            /*try
-            {
-                $con = getDatabaseConnexion();
-                $sql = "INSERT INTO member (name)
-                VALUES ('$name')";
-                $con->exec($sql);
-            }
-            catch(PDOException $e)
-            {
-                echo $sql . "<br>" . $e->getMessage();
-            }*/
+            $name = $_POST['name'];
+            $statement =  $this->getDataBaseConnexion()->query("INSERT INTO member (name) VALUES ('$name')");    
+            
+            return $statement->fetchAll();
         }
     }
 }
