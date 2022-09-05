@@ -5,24 +5,14 @@ require_once('Connexion.php');
 class Members extends Connexion
 {
 
-    public function getMembers()
+    public function getMembers(): array
     {
-        $statement = $this->getDataBaseConnexion()->query('SELECT * FROM member');
-    
-        return $statement->fetchAll();
+        return $this->query('SELECT * FROM member');
     }
     
-    public function createMember($name): string
+    public function createMembers(string $name): void
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') 
-        {
-            try {
-                $name = $_POST['name'];
-                $statement =  $this->getDataBaseConnexion()->query("INSERT INTO member (name) VALUES ('$name')");    
-                return "Le nom est bien inséré en base de données";
-            } catch (\Throwable $th) {
-                return "Oups, une erreur s'est produite";
-            }
-        }
+        $this->insert($name);
+        header('Location:index.php');
     }
 }

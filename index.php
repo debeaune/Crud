@@ -1,5 +1,15 @@
-<!DOCTYPE html>
+<?php
+    require_once('Members.php');
+    $members = New Members();
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST')  {
+        if(isset($_POST['name']) && !empty($_POST['name'])){
+           $members->createMembers($_POST['name']);
+        }
+    }
+?>
+
+<!DOCTYPE html>
 <html lang="FR">
     <head>
         <meta charset="utf-8"/>
@@ -20,27 +30,22 @@
             <main>
             <h2>Ajouter un(e) Argonaute</h2>
             <br>
-            <form action="Members.php" method="post" class="new-member-form">
+            <form method="post" class="new-member-form">
                 <label for="name">Nom de l'Argonaute</label>
                 <br>
                 <input name="name" type="text" class="form-control" placeholder="Charalampos" />
                 <br>
-                <button type="submit" class="btn btn-primary" name="bouton_valider" value="valider">Envoyer</button>
+                <button type="submit" class="btn btn-primary" value="valider">Envoyer</button>
             </form>
             <br>
             <h2>Membres de l'équipage</h2>
                 <section class="member-list">
-                    <div class="member-item">
-                        <?php
-                        require_once('Members.php');
-                        $members = New Members();
+                    <div class="member-item"> 
+                    <?php
                         $datas = $members->getMembers();
-                        
-                        foreach ($datas as $data) {
-                            echo $data['name'];
-                        }
-
-                        ?>
+                        foreach ($datas as $data) {?>
+                            <p><?= $data->name ?></p>
+                        <?php } ?>
                     </div>
                     </section>
                 </main>
