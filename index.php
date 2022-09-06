@@ -38,7 +38,7 @@
                 <button type="submit" class="btn btn-primary" value="valider">Envoyer</button>
             </form>
             <br>
-            <h2>Membres de l'équipage</h2>
+            <h2 id="titre">Membres de l'équipage</h2>
                 <section class="member-list">
                     <div class="member-item"> 
                     <?php
