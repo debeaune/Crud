@@ -43,8 +43,9 @@
                     <div class="member-item"> 
                     <?php
                         $datas = $members->getMembers();
+                        echo '<div class="row">';
                         foreach ($datas as $data) {?>
-                            <p><?= $data->name ?></p>
+                            <p class="col md-4"><?= $data->name ?></p>
                         <?php } ?>
                     </div>
                     </section>
